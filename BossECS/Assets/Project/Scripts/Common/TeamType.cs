@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Common
 {
     public enum TeamType: byte

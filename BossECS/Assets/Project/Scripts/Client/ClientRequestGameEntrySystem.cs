@@ -2,7 +2,6 @@
 using Unity.Entities;
 using Unity.NetCode;
 using Common;
-using UnityEngine;
 
 namespace Assets.Project.Scripts.Client
 {
