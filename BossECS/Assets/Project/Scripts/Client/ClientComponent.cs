@@ -7,4 +7,6 @@ namespace Assets.Project.Scripts
     {
         public TeamType Value;        
     }
+
+    public struct SceneLoadedTag : IComponentData { }
 }

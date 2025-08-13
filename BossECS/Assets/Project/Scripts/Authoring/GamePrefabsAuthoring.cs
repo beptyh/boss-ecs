@@ -17,6 +17,7 @@ namespace Assets.Project.Scripts
                 {
                     Character = GetEntity(authoring.Character, TransformUsageFlags.Dynamic)
                 });
+                AddComponent<SceneLoadedTag>(prefabContainerEntity);
             }
         }
     }

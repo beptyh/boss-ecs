@@ -6,7 +6,7 @@ using Common;
 namespace Assets.Project.Scripts.Client
 {
     [WorldSystemFilter(WorldSystemFilterFlags.ClientSimulation | WorldSystemFilterFlags.ThinClientSimulation)]
-    public  partial struct ClientRequestGameEntrySystem: ISystem
+    public partial struct ClientRequestGameEntrySystem : ISystem
     {
         private EntityQuery _pendingNetworkIdQuery;
 
@@ -18,6 +18,7 @@ namespace Assets.Project.Scripts.Client
             _pendingNetworkIdQuery = state.GetEntityQuery(builder);
             state.RequireForUpdate(_pendingNetworkIdQuery);
             state.RequireForUpdate<ClientTeamRequest>();
+            state.RequireForUpdate<SceneLoadedTag>();
         }
 
         public void OnUpdate(ref SystemState state)

@@ -7,7 +7,7 @@ using Unity.NetCode;
 using Unity.Networking.Transport;
 using Assets.Project.Scripts;
 using Common;
-public class ClientConnectionManager: MonoBehaviour
+public class ClientConnectionManager : MonoBehaviour
 {
     [SerializeField] private TMP_InputField _addressField;
     [SerializeField] private TMP_InputField _portField;
@@ -106,14 +106,14 @@ public class ClientConnectionManager: MonoBehaviour
             using var networkDriverQuery = clientWorld.EntityManager.CreateEntityQuery(ComponentType.ReadWrite<NetworkStreamDriver>());
             networkDriverQuery.GetSingletonRW<NetworkStreamDriver>().ValueRW.Connect(clientWorld.EntityManager, connectionEndpoint);
         }
-        var team  = _teamDropdown.value switch
+        var team = _teamDropdown.value switch
         {
             0 => TeamType.AutoAsign,
             1 => TeamType.Team1,
             2 => TeamType.Team2,
             _ => TeamType.None
         };
-        
+
         var teamRequestEntity = clientWorld.EntityManager.CreateEntity();
         clientWorld.EntityManager.AddComponentData(teamRequestEntity, new ClientTeamRequest { Value = team });
 

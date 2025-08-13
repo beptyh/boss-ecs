@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using Assets.Project.Scripts;
+using Common;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -19,8 +20,6 @@ public partial struct ServerProcessGameEntrySystem : ISystem
     }
     public void OnUpdate(ref SystemState state)
     {
-   
-        
         var ecb = new EntityCommandBuffer(Allocator.Temp);
         var characterPrefab = SystemAPI.GetSingleton<GamePrefabs>().Character;
 
@@ -43,7 +42,7 @@ public partial struct ServerProcessGameEntrySystem : ISystem
             ecb.SetComponent(newPlayer, new GhostOwner { NetworkId = clientId });
             ecb.SetComponent(newPlayer, new Team { Value = requestedTeamType });
 
-            ecb.AppendToBuffer(requestSource.SourceConnection, new LinkedEntityGroup { Value = newPlayer});
+            ecb.AppendToBuffer(requestSource.SourceConnection, new LinkedEntityGroup { Value = newPlayer });
             ecb.SetComponent(requestSource.SourceConnection, new CommandTarget
             {
                 targetEntity = newPlayer
@@ -53,6 +52,5 @@ public partial struct ServerProcessGameEntrySystem : ISystem
         }
         ecb.Playback(state.EntityManager);
     }
-        
-}
 
+}
